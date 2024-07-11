@@ -18,6 +18,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            console.log(context);
 
             console.log(`Milestone is ${context.payload.issue.milestone.title}`);
 
@@ -32,4 +33,3 @@ jobs:
                 core.setFailed("No milestone set on PR");
             }
 
-            console.log(context);

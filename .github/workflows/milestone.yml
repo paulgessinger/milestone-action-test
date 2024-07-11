@@ -20,11 +20,10 @@ jobs:
           script: |
             console.log(context);
 
-
-            if ( github.event.issue.pull_request ) {
+            if ( context.payload.issue && context.payload.issue.pull_request ) {
                 let pr_number = context.payload.issue.number;
                 let milestone = context.payload.issue.milestone;
-            } else if ( github.event.pull_request ) {
+            } else if ( context.payload.pull_request ) {
                 let pr_number = context.payload.pull_request.number;
                 let milestone = context.payload.pull_request.milestone;
             }

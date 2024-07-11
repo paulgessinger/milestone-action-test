@@ -41,11 +41,12 @@ jobs:
                 conclusion = "failure";
             }
 
-            let pr = await github.rest.pulls.get({
+            let response = await github.rest.pulls.get({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: pr_number
-            }).data;
+            });
+            let pr = response.data;
 
             console.log(pr);
 

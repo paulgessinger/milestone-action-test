@@ -4,6 +4,8 @@ on:
       - milestoned
       - demilestoned
 
+name: "Check milestones on PR"
+
 jobs:
   check_milestone:
     name: "Check milestone"
@@ -15,3 +17,7 @@ jobs:
         with:
           script: |
             console.log(context);
+            console.log(`Milestone is ${context.payload.issue.milestone}`);
+            if(context.payload.issue.milestone === null) {
+                core.setFailed("No milestone set on PR");
+            }

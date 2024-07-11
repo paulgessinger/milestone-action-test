@@ -38,7 +38,7 @@ jobs:
                 conclusion = "success";
             } else {
                 console.log("No milestone");
-                conclusion = "failure":
+                conclusion = "failure";
             }
 
             let pr = await github.rest.pulls.get({

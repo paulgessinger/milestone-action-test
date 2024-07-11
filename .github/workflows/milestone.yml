@@ -23,8 +23,8 @@ jobs:
 
             let pr_number = context.payload.issue.number;
             let pr = github.rest.pulls.get({
-                owner: context.repo.owner
-                repo: context.repo.owner
+                owner: context.repo.owner,
+                repo: context.repo.repo,
                 pull_number: pr_number
             });
 

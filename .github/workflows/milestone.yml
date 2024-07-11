@@ -33,11 +33,20 @@ jobs:
             }
 
             let conclusion = null;
+            let output = {};
             if(milestone !== null) {
                 console.log(`Milestone is ${milestone.title}`);
+                output = {
+                    title: "Milestone is set",
+                    summary: "A milestone has been assigned"
+                };
                 conclusion = "success";
             } else {
                 console.log("No milestone");
+                output = {
+                    title: "A milestone has to be set",
+                    summary: `Please add a version milestone`
+                };
                 conclusion = "failure";
             }
 

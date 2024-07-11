@@ -61,7 +61,7 @@ jobs:
 
             let head_sha = pr.head.sha
 
-            await github.rest.checks.create({
+            let res = await github.rest.checks.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 name: "milestone-set",
@@ -74,3 +74,5 @@ jobs:
                     summary: `Please add a version milestone`
                 }
             });
+
+            console.log(res);

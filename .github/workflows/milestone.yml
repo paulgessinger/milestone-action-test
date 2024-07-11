@@ -57,6 +57,7 @@ jobs:
                 repo: context.repo.repo,
                 name: "milestone-set",
                 status: "completed",
+                conclusion: conclusion,
                 head_branch: '', // workaround for https://github.com/octokit/rest.js/issues/874
                 head_sha: head_sha,
                 output: {

@@ -52,7 +52,7 @@ jobs:
 
             let head_sha = pr.head.sha
 
-            await github.checks.create({
+            await github.rest.checks.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 name: "milestone-set",

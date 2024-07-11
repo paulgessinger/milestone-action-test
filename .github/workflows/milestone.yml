@@ -20,12 +20,12 @@ jobs:
           script: |
             console.log(context);
 
-            if ( context.payload.issue && context.payload.issue.pull_request ) {
-                let pr_number = context.payload.issue.number;
-                let milestone = context.payload.issue.milestone;
-            } else if ( context.payload.pull_request ) {
+            if(context.eventName === "pull_request_target") {
                 let pr_number = context.payload.pull_request.number;
                 let milestone = context.payload.pull_request.milestone;
+            } else if(context.eventName === "issues" && "pull_request" in context.payload.issue) {
+                let pr_number = context.payload.issue.number;
+                let milestone = context.payload.issue.milestone;
             }
 
             console.log(`Milestone is ${milestone.title}`);

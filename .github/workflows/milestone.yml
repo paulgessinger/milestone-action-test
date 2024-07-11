@@ -31,7 +31,7 @@ jobs:
 
             console.log(`Milestone is ${milestone.title}`);
 
-            # conosl.
+            // conosl.
 
             let pr = github.rest.pulls.get({
                 owner: context.repo.owner,
@@ -39,7 +39,7 @@ jobs:
                 pull_number: pr_number
             });
 
-            # if(milestone === null) {
-            #     core.setFailed("No milestone set on PR");
-            # }
+            // if(milestone === null) {
+            //     core.setFailed("No milestone set on PR");
+            // }
 

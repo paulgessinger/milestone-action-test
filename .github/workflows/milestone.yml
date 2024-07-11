@@ -1,10 +1,12 @@
+name: "Check milestones on PR"
+
 on:
   issues:
     types:
       - milestoned
       - demilestoned
-
-name: "Check milestones on PR"
+  pull_request_target:
+    types: [opened]
 
 jobs:
   check_milestone:

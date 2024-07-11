@@ -32,21 +32,34 @@ jobs:
                 milestone = context.payload.issue.milestone;
             }
 
+            let conclusion = null;
             if(milestone !== null) {
                 console.log(`Milestone is ${milestone.title}`);
+                conclusion = "success";
             } else {
                 console.log("No milestone");
+                conclusion = "failure":
             }
 
             let pr = await github.rest.pulls.get({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: pr_number
-            });
+            }).data;
 
             console.log(pr);
 
-            // if(milestone === null) {
-            //     core.setFailed("No milestone set on PR");
-            // }
+            let head_sha = pr.head.sha
 
+            await github.checks.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: "milestone-set",
+                status: "completed",
+                head_branch: '', // workaround for https://github.com/octokit/rest.js/issues/874
+                head_sha: head_sha,
+                output: {
+                    title: "A milestone has to be set",
+                    summary: `Please add a version milestone`
+                }
+            });

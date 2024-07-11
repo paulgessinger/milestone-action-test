@@ -21,13 +21,14 @@ jobs:
             console.log(context);
 
 
-            let milestone = null
+            let milestone = null;
+            let pr_number = null;
             if(context.eventName === "pull_request_target") {
-                let pr_number = context.payload.pull_request.number;
+                pr_number = context.payload.pull_request.number;
                 milestone = context.payload.pull_request.milestone;
                 console.log(`PR TARGET Milestone ${milestone}`);
             } else if(context.eventName === "issues" && "pull_request" in context.payload.issue) {
-                let pr_number = context.payload.issue.number;
+                pr_number = context.payload.issue.number;
                 milestone = context.payload.issue.milestone;
             }
 

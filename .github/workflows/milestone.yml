@@ -6,7 +6,7 @@ on:
       - milestoned
       - demilestoned
   pull_request_target:
-    types: [opened]
+    types: [opened, reopened]
 
 jobs:
   check_milestone:

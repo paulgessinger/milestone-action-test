@@ -20,16 +20,26 @@ jobs:
           script: |
             console.log(context);
 
-            console.log(`Milestone is ${context.payload.issue.milestone.title}`);
 
-            let pr_number = context.payload.issue.number;
+            if ( github.event.issue.pull_request ) {
+                let pr_number = context.payload.issue.number;
+                let milestone = context.payload.issue.milestone;
+            } else if ( github.event.pull_request ) {
+                let pr_number = context.payload.pull_request.number;
+                let milestone = context.payload.pull_request.milestone;
+            }
+
+            console.log(`Milestone is ${milestone.title}`);
+
+            # conosl.
+
             let pr = github.rest.pulls.get({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: pr_number
             });
 
-            if(context.payload.issue.milestone === null) {
-                core.setFailed("No milestone set on PR");
-            }
+            # if(milestone === null) {
+            #     core.setFailed("No milestone set on PR");
+            # }
 
